@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Area = () => (
+const Area = ({ area }) => (
 
-  <div className='area' id={/* how do we get this thing styled right? See Stylesheets and Readme */}>
-    <h3 className='labels'>{/* Don't just pass in the name from the data...clean that thing up */}</h3>
+  <div className='area' id={area.name}>
+    <h3 className='labels'>{area.name}</h3>
 
     {/* See Checkpoint 1 item 2 in the Readme for a clue as to what goes here */}
 
