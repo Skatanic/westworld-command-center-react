@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Segment } from 'semantic-ui-react';
+import ErrorBoundary from './ErrorBoundary'
 import WestworldMap from './components/WestworldMap'
 // import Headquarters from './components/Headquarters'
 
@@ -22,13 +23,15 @@ class App extends Component {
 
   render(){
     return (
-      <AreaContext.Provider value={this.state.areas}>
-        <Segment id='app'>
-          <WestworldMap />
-          {/* <Headquarters /> */}
-          {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
-        </Segment>
-      </AreaContext.Provider>
+      <ErrorBoundary>
+        <AreaContext.Provider value={this.state.areas}>
+          <Segment id='app'>
+            <WestworldMap />
+            {/* <Headquarters /> */}
+            {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
+          </Segment>
+        </AreaContext.Provider>
+      </ErrorBoundary>
     )
   }
 }
