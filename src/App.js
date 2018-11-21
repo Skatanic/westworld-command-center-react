@@ -5,7 +5,7 @@ import WestworldMap from './components/WestworldMap'
 import Headquarters from './components/Headquarters'
 
 export const AreaContext = React.createContext([])
-export const HostContext = React.createContext([])
+export const HostContext = React.createContext({})
 
 const App = () => {
   const [areas, setAreas] = useState([])
