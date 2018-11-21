@@ -22,8 +22,6 @@ const App = () => {
       setHosts(newHosts)
       setSelectedHost(newSelectedHost)
   }
-  const activeHosts = hosts.filter(host => host.active)
-  const coldHosts = hosts.filter(host => !host.active)
 
   // As you go through the components you'll see a lot of functional components.
   // But feel free to change them to whatever you want.
@@ -47,9 +45,8 @@ const App = () => {
     selectedHost,
     setSelectedHost,
     editSelectedHost,
-    activeHosts,
-    coldHosts
   }
+  
   return (
     <ErrorBoundary>
       <AreaContext.Provider value={areas}>

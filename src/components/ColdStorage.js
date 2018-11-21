@@ -4,19 +4,20 @@ import { HostContext } from '../App'
 import Host from './Host'
 
 const ColdStorage = () => {
-  const { hosts } = useContext(HostContext) 
+  const { hosts, selectedHost, setSelectedHost } = useContext(HostContext)
+  const handleSelected = host => evt => setSelectedHost(host)
   return (
     <Segment.Group className="HQComps">
       <Segment compact>
         <h3 className="labels">ColdStorage</h3>
       </Segment>
       <Segment compact style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {hosts.map(host => <Host 
+        {hosts.filter(host => !host.active).map(host => <Host 
           key={host.id} 
-          host={host} 
+          host={host}
+          onSelect={handleSelected(host)}
+          selected={selectedHost && selectedHost.id === host.id }
         />)}
-        {/* Cold Storage contains hosts....but how? Directly? Or is there something else we could use to contain them... */}
-
       </Segment>
     </Segment.Group>
   )
