@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Radio, Icon, Card, Grid, Image, Dropdown, Divider } from 'semantic-ui-react'
-
+import { HostContext } from '../App'
 
 const HostInfo = () => {
 

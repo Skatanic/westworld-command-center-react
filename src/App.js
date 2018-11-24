@@ -46,7 +46,8 @@ const App = () => {
     setSelectedHost,
     editSelectedHost,
   }
-  
+
+  console.log('App rerenders')
   return (
     <ErrorBoundary>
       <AreaContext.Provider value={areas}>
