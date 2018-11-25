@@ -11,7 +11,6 @@ const App = () => {
   const [areas, setAreas] = useState([])
 
   const [hosts, setHosts] = React.useState([])
-  const [selectedHost, setSelectedHost] = React.useState(null)
   const editSelectedHost = obj => {
       let newSelectedHost
       const newHosts = hosts.map(host => {
@@ -20,8 +19,18 @@ const App = () => {
       return newSelectedHost
       })
       setHosts(newHosts)
-      setSelectedHost(newSelectedHost)
   }
+
+  const selectHost = id => setHosts(
+    hosts.reduce((all, current) => {
+      if (current.id === id) {
+        return [...all, { ...current, selected: true }]
+      } else {
+        const { selected, ...rest } = current
+        return [...all, { ...rest }]
+      }
+    }, [])
+  )
 
   // As you go through the components you'll see a lot of functional components.
   // But feel free to change them to whatever you want.
@@ -42,12 +51,12 @@ const App = () => {
   const hostStore = {
     hosts,
     setHosts,
-    selectedHost,
-    setSelectedHost,
     editSelectedHost,
+    selectHost
   }
 
   console.log('App rerenders')
+
   return (
     <ErrorBoundary>
       <AreaContext.Provider value={areas}>

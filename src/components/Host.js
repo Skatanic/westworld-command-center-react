@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { memo } from 'react'
 import { Card } from 'semantic-ui-react'
 
-const Host = ({ host, onSelect, selected }) => {
+const Host = memo(({ host, onSelect, selected }) => {
   // {/* Remove the "selected" portion of the className above to see what happens to the host. */}
+  console.log('Host rerenders')
+  
   return (
     <div style={{ margin: 14 }}>
       <Card
@@ -13,6 +15,6 @@ const Host = ({ host, onSelect, selected }) => {
       />
     </div>
   )
-}
+}, (prevProps, nextProps) => prevProps.selected === nextProps.selected)
 
 export default Host
