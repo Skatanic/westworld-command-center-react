@@ -9,17 +9,17 @@ export const HostContext = React.createContext({})
 
 const App = () => {
   const [areas, setAreas] = useState([])
-
   const [hosts, setHosts] = React.useState([])
-  const editSelectedHost = obj => {
-      let newSelectedHost
-      const newHosts = hosts.map(host => {
-      if (host.id !== selectedHost.id) return host
-      newSelectedHost = { ...host, ...obj }
-      return newSelectedHost
-      })
-      setHosts(newHosts)
-  }
+
+  const editSelectedHost = obj => setHosts(
+    hosts.reduce((all, current) => {
+      if (current.id === obj.id) {
+        return [...all, { ...obj }]
+      } else {
+        return [...all, current]
+      }
+    }, [])
+  )
 
   const selectHost = id => setHosts(
     hosts.reduce((all, current) => {
@@ -32,10 +32,6 @@ const App = () => {
     }, [])
   )
 
-  // As you go through the components you'll see a lot of functional components.
-  // But feel free to change them to whatever you want.
-  // It's up to you whether they should be stateful or not.
-  
   useEffect(() => {
     fetch('/areas')
       .then(response => response.json())
@@ -64,7 +60,6 @@ const App = () => {
           <Segment id='app'>
             <WestworldMap />
             <Headquarters />
-            {/* What components should go here? Check out Checkpoint 1 of the Readme if you're confused */}
           </Segment>
         </HostContext.Provider>
       </AreaContext.Provider>
@@ -72,4 +67,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
