@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import startCase from 'lodash/startCase'
+import Host from './Host'
+import { HostContext } from '../App'
 
-const Area = ({ area }) => (
+const Area = ({ area }) => {
+  console.log(`Area ${area.name} rerenders`)
+  const { hosts, selectHost } = useContext(HostContext)
 
-  <div className='area' id={area.name}>
+  return <div className='area' id={area.name}>
     <h3 className='labels'>{startCase(area.name)}</h3>
-
-    {/* See Checkpoint 1 item 2 in the Readme for a clue as to what goes here */}
-
+    {hosts.filter(host => host.area === area.name && host.active)
+      .map(host => <Host 
+        key={host.id}
+        host={host}
+        onSelect={selectHost}
+      />)
+    }
   </div>
-
-)
+}
 
 Area.propTypes = {
   hosts: function(props, propName, componentName){

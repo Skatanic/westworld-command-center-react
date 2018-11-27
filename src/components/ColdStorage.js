@@ -5,8 +5,6 @@ import Host from './Host'
 
 const ColdStorage = () => {
   const { hosts, selectHost } = useContext(HostContext)
-  const handleSelected = id => evt => selectHost(id)
-
   console.log('ColdStorage rerenders')
 
   return (
@@ -18,8 +16,7 @@ const ColdStorage = () => {
         {hosts.filter(host => !host.active).map(host => <Host 
           key={host.id} 
           host={host}
-          onSelect={handleSelected(host.id)}
-          selected={host.selected}
+          onSelect={selectHost}
         />)}
       </Segment>
     </Segment.Group>

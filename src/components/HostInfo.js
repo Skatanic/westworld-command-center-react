@@ -29,7 +29,7 @@ const HostInfo = ({ selectedHost }) => {
                 style={{margin: "10px"}} 
                 slider 
                 onChange={toggleActive} 
-                label={selectedHost.active ? 'Active' : 'Not Active'} 
+                label={selectedHost.active ? 'Active' : 'Decomissioned'} 
                 checked={selectedHost.active} 
               />
             </Card.Meta>

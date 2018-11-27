@@ -12,24 +12,24 @@ const App = () => {
   const [hosts, setHosts] = React.useState([])
 
   const editSelectedHost = obj => setHosts(
-    hosts.reduce((all, current) => {
-      if (current.id === obj.id) {
-        return [...all, { ...obj }]
+    hosts.map(host => {
+      if (host.id === obj.id) {
+        return obj
       } else {
-        return [...all, current]
+        return host
       }
-    }, [])
+    })
   )
 
   const selectHost = id => setHosts(
-    hosts.reduce((all, current) => {
-      if (current.id === id) {
-        return [...all, { ...current, selected: true }]
+    hosts.map(host => {
+      if (host.id === id) {
+        return { ...host, selected: true }
       } else {
-        const { selected, ...rest } = current
-        return [...all, { ...rest }]
+        const { selected, ...rest } = host
+        return { ...rest }
       }
-    }, [])
+    })
   )
 
   useEffect(() => {
@@ -46,7 +46,6 @@ const App = () => {
 
   const hostStore = {
     hosts,
-    setHosts,
     editSelectedHost,
     selectHost
   }
@@ -58,7 +57,7 @@ const App = () => {
       <AreaContext.Provider value={areas}>
         <HostContext.Provider value={hostStore}>
           <Segment id='app'>
-            <WestworldMap />
+            <WestworldMap areas={areas} />
             <Headquarters />
           </Segment>
         </HostContext.Provider>
